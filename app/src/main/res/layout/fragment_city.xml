@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="clima"
+            type="mobile.sitis.clima.data.models.Clima"/>
+    </data>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:padding="@dimen/small">
+
+        <TextView
+            android:id="@+id/pronostico"
+            android:padding="@dimen/small"
+            android:text="@{clima.pronostico}"
+            />
+
+        <TableRow>
+
+            <TextView
+                android:text="Humedad"
+                style="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/hum"
+                tools:text="2000"
+                android:text="@{clima.hum}"
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:text="Presion" />
+
+            <TextView
+                android:id="@+id/pres"
+                tools:text="2000"
+                android:text="@{clima.pres}"
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:text="Temperatura"
+                android:paddingRight="20dp"
+
+                />
+
+            <TextView
+                android:id="@+id/temp"
+                android:text="@{clima.temp}"
+                tools:text="2000" />
+        </TableRow>
+
+
+    </TableLayout>
+</layout>
