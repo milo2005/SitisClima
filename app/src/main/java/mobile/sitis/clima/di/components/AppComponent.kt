@@ -6,13 +6,15 @@ import dagger.android.AndroidInjectionModule
 import mobile.sitis.clima.App
 import mobile.sitis.clima.di.modules.ApiModule
 import mobile.sitis.clima.di.modules.AppModule
+import mobile.sitis.clima.di.modules.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class,
     ApiModule::class,
     ActivityComponents::class,
-    AndroidInjectionModule::class])
+    AndroidInjectionModule::class,
+    ViewModelModule::class])
 interface AppComponent{
 
     fun inject(app: App)
