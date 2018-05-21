@@ -9,6 +9,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import mobile.sitis.clima.R
+import mobile.sitis.clima.ui.adapters.ClimaAdapter
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        pager.adapter = ClimaAdapter(supportFragmentManager)
         tabs.setupWithViewPager(pager)
 
     }

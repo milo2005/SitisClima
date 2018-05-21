@@ -5,7 +5,7 @@ import retrofit2.http.*
 
 interface ClimaApi{
 
-    @GET("/public/yql")
+    @GET("public/yql")
     fun getClima(@Query("q") q:String, @Query("format") format:String,
                  @Query("env") env:String): Single<Weather>
 
