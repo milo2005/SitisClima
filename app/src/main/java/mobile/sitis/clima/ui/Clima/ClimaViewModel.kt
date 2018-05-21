@@ -10,7 +10,7 @@ import javax.inject.Inject
 class ClimaViewModel @Inject constructor(val api:ClimaApi):ViewModel(){
 
 
-    fun getClima(): Single<Clima> = api.getClima("", "" ,"")
+    fun getClima(city:String): Single<Clima> = api.getClima("select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22$city%2C%20co%22)", "json" ,"store%3A%2F%2Fdatatables.org%2Falltableswithkeys")
             .map { it.results.channel }
             .map {
                 val tem = it.item.condition.temp

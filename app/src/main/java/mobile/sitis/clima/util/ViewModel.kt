@@ -3,6 +3,7 @@ package mobile.sitis.clima.util
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import javax.inject.Inject
 import javax.inject.Provider
@@ -20,4 +21,7 @@ class AppViewModelFactory @Inject constructor(private val creators: Map<Class<ou
 }
 
 inline fun <reified T: ViewModel> AppCompatActivity.buildViewModel(factory: ViewModelProvider.Factory):T =
+        ViewModelProviders.of(this, factory).get(T::class.java)
+
+inline fun <reified T: ViewModel> Fragment.buildViewModel(factory: ViewModelProvider.Factory):T =
         ViewModelProviders.of(this, factory).get(T::class.java)

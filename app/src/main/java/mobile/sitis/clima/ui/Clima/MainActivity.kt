@@ -1,26 +1,29 @@
 package mobile.sitis.clima.ui.Clima
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import dagger.android.AndroidInjection
+import android.support.v4.app.Fragment
+import android.support.v4.view.PagerAdapter
+import android.support.v7.app.AppCompatActivity
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.activity_main.*
 import mobile.sitis.clima.R
-import mobile.sitis.clima.data.models.Persona
-import mobile.sitis.clima.di.Injectable
-import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), Injectable {
+class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
 
     @Inject
-    lateinit var persona:Persona
+    lateinit var injector: DispatchingAndroidInjector<Fragment>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tabs.setupWithViewPager(pager)
 
-        persona.nombre = "DArio"
-
-        startActivity<PersonaActivity>()
     }
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = injector
 }

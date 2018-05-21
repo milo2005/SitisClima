@@ -14,6 +14,7 @@ import mobile.sitis.clima.databinding.FragmentCityBinding
 class CityFragment : Fragment() {
 
     lateinit var binding:FragmentCityBinding
+    val city:String by lazy{ arguments!!.getString("city")}
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -21,6 +22,20 @@ class CityFragment : Fragment() {
         binding = FragmentCityBinding.inflate(inflater,container, false)
 
         return binding.root
+    }
+
+    companion object {
+        val CITY_POPAYAN = "popayan"
+        val CITY_CALI = "cali"
+        val CITY_BOGOTA = "bogota"
+
+        fun instance(city:String):CityFragment{
+            val fragment = CityFragment()
+            val args = Bundle()
+            args.putString("city", city)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
 
