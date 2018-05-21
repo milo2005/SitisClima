@@ -8,12 +8,19 @@ import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.HasSupportFragmentInjector
 import mobile.sitis.clima.App
+import mobile.sitis.clima.di.components.DaggerAppComponent
 
 class AppInjector {
 
     companion object {
         fun init(app: App){
+
+            DaggerAppComponent.builder()
+                    .application(app)
+                    .build()
+                    .inject(app)
 
             app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks{
                 override fun onActivityPaused(activity: Activity?) {   }
@@ -34,16 +41,18 @@ class AppInjector {
 
             })
         }
+
+
         private fun handlerActivity(activity: Activity){
-            // if (activity is Injectable || activity is HasSupportFragmentInjector){
+            if (activity is Injectable || activity is HasSupportFragmentInjector){
                 AndroidInjection.inject(activity)
-            // }
+            }
             (activity as AppCompatActivity).supportFragmentManager
                     .registerFragmentLifecycleCallbacks(object: FragmentManager.FragmentLifecycleCallbacks(){
                         override fun onFragmentCreated(fm: FragmentManager?, f: Fragment?, savedInstanceState: Bundle?) {
-               //              if(f is Injectable){
+                             if(f is Injectable){
                                 AndroidSupportInjection.inject(f)
-                 //           }
+                            }
                         }
                     }, true)
         }

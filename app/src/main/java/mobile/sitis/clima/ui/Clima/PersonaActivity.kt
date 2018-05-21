@@ -5,22 +5,20 @@ import android.os.Bundle
 import dagger.android.AndroidInjection
 import mobile.sitis.clima.R
 import mobile.sitis.clima.data.models.Persona
-import mobile.sitis.clima.di.Injectable
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), Injectable {
+class PersonaActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var persona:Persona
+    lateinit var persona: Persona
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_persona)
+        AndroidInjection.inject(this)
 
+        toast(persona.nombre)
 
-        persona.nombre = "DArio"
-
-        startActivity<PersonaActivity>()
     }
 }
