@@ -1,5 +1,6 @@
 package mobile.sitis.clima.di.components
 
+import dagger.BindsInstance
 import dagger.Component
 import mobile.sitis.clima.App
 import mobile.sitis.clima.di.modules.AppModule
@@ -8,6 +9,15 @@ import mobile.sitis.clima.di.modules.AppModule
 interface AppComponent{
 
     fun inject(app: App)
+
+    @Component.Builder
+    interface Builder{
+
+        @BindsInstance
+        fun application(app:App):AppComponent.Builder
+
+        fun build():AppComponent
+    }
 
 
 
